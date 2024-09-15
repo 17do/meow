@@ -1,3 +1,4 @@
+use crate::App;
 use crossterm::{
     cursor,
     event::{self, KeyCode, KeyEvent, KeyModifiers},
@@ -9,8 +10,6 @@ use std::{
     error::Error,
     io::{self, Write},
 };
-
-pub struct App;
 
 impl App {
     pub fn new() -> Result<(), Box<dyn Error>> {

@@ -3,13 +3,13 @@
 use std::path::PathBuf;
 mod base;
 mod meow_music;
-use base::App;
 use rodio::{Decoder, OutputStream, OutputStreamHandle, Source};
 pub struct MeowMusics<'a> {
     music: &'a str,
     _stream: OutputStream,
     stream_handle: OutputStreamHandle,
 }
+pub struct App;
 
 #[test]
 fn test() {
