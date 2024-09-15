@@ -1,7 +1,8 @@
 #![allow(warnings)]
 
-use std::path::PathBuf;
+use std::{path::PathBuf, time::Duration};
 mod base;
+mod draw;
 mod meow_music;
 use rodio::{Decoder, OutputStream, OutputStreamHandle, Source};
 pub struct MeowMusics<'a> {
@@ -10,14 +11,20 @@ pub struct MeowMusics<'a> {
     stream_handle: OutputStreamHandle,
 }
 pub struct App;
+pub struct MeowBox {
+    x: u16,
+    y: u16,
+    width: u16,
+    height: u16,
+    text: String,
+}
 
 #[test]
 fn test() {
     App::new().unwrap();
-    let s = MeowMusics::new("/home/inado/Music/Kan Saete Kuyashiiwa.mp3").unwrap();
-    println!("Time: {:?}", s.metadata());
-    s.play().unwrap();
-    std::thread::sleep(s.metadata().unwrap());
-
-    App::end().unwrap();
+    loop {
+        App::clear().unwrap();
+        MeowBox::new(5, 5, 15, 15).draw().unwrap();
+    }
+    App::end();
 }

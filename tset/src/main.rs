@@ -14,7 +14,7 @@ fn expand_home_path(path: &str) -> PathBuf {
 }
 
 fn main() {
-    meow::App::new();
+    meow::App::new().unwrap();
     println!("please enter music file.");
     let mut str_ = String::new();
     print!("> ");
@@ -29,5 +29,5 @@ fn main() {
     println!("time: {}", s.as_secs());
 
     std::thread::sleep(s);
-    meow::App::end();
+    meow::App::end().unwrap();
 }
