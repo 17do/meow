@@ -13,5 +13,5 @@ pub struct MeowMusics<'a> {
 fn test() {
     let s = MeowMusics::new("/home/inado/Music/Kan Saete Kuyashiiwa.mp3").unwrap();
 
-    s.play();
+    std::thread::sleep(s.play().unwrap());
 }
