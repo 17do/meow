@@ -20,4 +20,9 @@ impl App {
         stdout.execute(terminal::EnterAlternateScreen)?;
         Ok(())
     }
+    pub fn end() -> Result<(), Box<dyn Error>> {
+        let mut stdout = io::stdout();
+        stdout.execute(terminal::LeaveAlternateScreen)?;
+        Ok(())
+    }
 }
