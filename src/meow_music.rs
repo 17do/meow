@@ -21,6 +21,17 @@ impl<'a> MeowMusics<'a> {
         })
     }
 
+    pub fn metadata(&self) -> Result<Duration, Box<dyn Error>> {
+        let file = File::open(Path::new(self.music))?;
+        let source = Decoder::new(BufReader::new(file))?;
+        let mut time: Duration = Duration::new(1, 1);
+
+        if let Some(duration) = source.total_duration() {
+            time = duration;
+        }
+        Ok(time)
+    }
+
     pub fn play(&self) -> Result<Duration, Box<dyn Error>> {
         let file = File::open(Path::new(self.music))?;
         let source = Decoder::new(BufReader::new(file))?;
