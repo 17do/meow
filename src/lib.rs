@@ -1,17 +1,17 @@
 #![allow(warnings)]
 
-use meow_music::MeowMusicSetup;
-
+use std::path::PathBuf;
 mod meow_music;
-
-pub struct MeowMusics {
-    music: String,
+use rodio::{Decoder, OutputStream, OutputStreamHandle, Source};
+pub struct MeowMusics<'a> {
+    music: &'a str,
+    _stream: OutputStream,
+    stream_handle: OutputStreamHandle,
 }
 
 #[test]
-fn main() {
-    MeowMusicSetup::setup()
-        .unwrap()
-        .play("./meow_music.rs")
-        .unwrap();
+fn test() {
+    let s = MeowMusics::new("/home/inado/Music/Kan Saete Kuyashiiwa.mp3").unwrap();
+
+    s.play();
 }
