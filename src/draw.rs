@@ -1,4 +1,4 @@
-use crate::MeowBox;
+use crate::{Line, MeowPosition, Place, Square};
 use crossterm::{
     cursor, execute,
     style::{self, Print},
@@ -10,9 +10,19 @@ use std::{
     io::{stdout, Write},
 };
 
-impl MeowBox {
+impl Square {
     pub fn new(x_: u16, y_: u16, w: u16, h: u16) -> Self {
-        MeowBox {
+        Square {
+            x: x_,
+            y: y_,
+            width: w,
+            height: h,
+            text: "".to_string(),
+        }
+    }
+    pub fn new_set(xy: MeowPosition, w: u16, h: u16) -> Self {
+        let (x_, y_) = MeowPosition::ret(&xy);
+        Square {
             x: x_,
             y: y_,
             width: w,
@@ -57,5 +67,12 @@ impl MeowBox {
 
         stdout.flush()?;
         Ok(())
+    }
+}
+
+impl Line {
+    pub fn new() -> Self {
+        println!("-------------");
+        Self
     }
 }
